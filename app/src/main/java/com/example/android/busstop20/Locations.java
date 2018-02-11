@@ -4,14 +4,16 @@ import java.text.DecimalFormat;
 
 public class Locations {
 
-    private byte stopNum;
+    private int ID;
+    private int stopNum;
     private String nickname;
     private String properName;
     private double latitude;
     private double longitude;
 
-    public Locations(byte stopNum, String nickname, String properName,
+    public Locations(int ID, int stopNum, String nickname, String properName,
                      double latitude, double longitude){
+        this.ID = ID;
         this.stopNum = stopNum;
         this.nickname = nickname;
         this.properName = properName;
@@ -21,7 +23,11 @@ public class Locations {
 
     // Getters
 
-    public byte getStopNum(){
+    public int getID(){
+        return ID;
+    }
+
+    public int getStopNum(){
         return stopNum;
     }
 

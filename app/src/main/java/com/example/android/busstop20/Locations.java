@@ -1,7 +1,5 @@
 package com.example.android.busstop20;
 
-import java.text.DecimalFormat;
-
 public class Locations {
 
     private int ID;

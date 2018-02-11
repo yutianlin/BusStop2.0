@@ -1,6 +1,7 @@
 package com.example.android.busstop20;
 
 public class Buses {
+
     private int ID;
     private short busNum;
 

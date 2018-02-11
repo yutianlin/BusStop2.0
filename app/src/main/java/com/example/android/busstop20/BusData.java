@@ -24,9 +24,10 @@ public class BusData extends SQLiteOpenHelper{
     private static final String BUS_NUM = "Bus_Number";
 
     // Bus Location Table
-    private static final String TABLE_BUS_LOCATION ="Bus_Location";
-    private static final String LATITUDE = "Latitude";
-    private static final String LONGITUDE = "Longitude";
+    private static final String TABLE_BUS_LOCATION = "Bus_Location";
+    private static final String ID_BUS = "Bus_ID";
+    private static final String ID_START_LOCATION = "Start_Location_ID";
+    private static final String ID_STOP_LOCATION = "Stop_Location_ID";
 
     // Common Column Names
     private static final String ID = "ID";
@@ -40,11 +41,30 @@ public class BusData extends SQLiteOpenHelper{
     //EFFECTS: Creates a database with given fields and data types, auto generated IDs
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String myDB = "CREATE TABLE " + DATABASE_NAME + "("
-        + ID + " INTEGER PRIMARY KEY," + BUS_NUM + " SMALLINT," + BUS_STOP_NUM + "SMALLINT,"
-                + NICK_FROM + " TEXT," + PROP_FROM + "TEXT," + PROP_TO + "TEXT,"
-                + LONG + " DECIMAL(9,6)," + LAT + "DECIMAL(9,6)" + ")";
-        db.execSQL(myDB);
+        db.execSQL(createLocationsTable());
+        db.execSQL(createBusesTable());
+        db.execSQL(createBusLocationTable());
+    }
+
+    private String createLocationsTable(){
+        String myDB = "CREATE TABLE " + TABLE_LOCATION + "("
+                + ID + " INTEGER PRIMARY KEY," + BUS_STOP_NUM + "INT,"
+                + NICK + " TEXT," + PROP + "TEXT," + LONG + " DECIMAL(9,6)," +
+                LAT + "DECIMAL(9,6)" + ")";
+        return myDB;
+    }
+
+    private String createBusesTable(){
+        String myDB = "CREATE TABLE " + TABLE_BUSES + "("
+                + ID + " INTEGER PRIMARY KEY," + BUS_NUM + "SMALLINT" + ")";
+        return myDB;
+    }
+
+    private String createBusLocationTable(){
+        String myDB = "CREATE TABLE " + TABLE_BUS_LOCATION + "("
+                + ID + " INTEGER PRIMARY KEY," + ID_BUS + "INT," + ID_START_LOCATION
+                + "INT," + ID_STOP_LOCATION + "INT" + ")";
+        return myDB;
     }
 
     //EFFECTS: Replaces old database if it exists
@@ -53,6 +73,7 @@ public class BusData extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
         onCreate(db);
     }
+
 
 
 }

@@ -1,28 +1,28 @@
 package com.example.android.busstop20;
 
-public class Buses {
+public class Buses{
 
-    private int ID;
-    private short busNum;
+    private Integer busID;
+    private Integer busNum;
 
-    public Buses(int ID, short busNum){
-        this.ID = ID;
+    public Buses(Integer busID, Integer busNum){
+        this.busID = busID;
         this.busNum = busNum;
     }
 
     // Getters
 
-    public int getID(){
-        return ID;
+    public long getbusID(){
+        return busID;
     }
 
-    public short getBusNum(){
+    public Integer getBusNum(){
         return busNum;
     }
 
     // Setters
 
-    public void setBusNum(short busNum){
+    public void setBusNum(Integer busNum){
         this.busNum = busNum;
     }
 }

@@ -1,17 +1,21 @@
 package com.example.android.busstop20;
 
-public class Locations {
+import static android.R.attr.direction;
 
-    private int ID;
-    private int stopNum;
+public class Locations extends Direction{
+
+    private Integer StopID;
+    private Integer stopNum;
     private String nickname;
-    private String properName;
-    private double latitude;
-    private double longitude;
+    private Double latitude;
+    private Double longitude;
 
-    public Locations(int ID, int stopNum, String nickname, String properName,
-                     double latitude, double longitude){
-        this.ID = ID;
+    public Locations(){
+    }
+
+    public Locations(Integer StopID, Integer stopNum, String nickname, String properName,
+                     Double latitude, Double longitude){
+        this.StopID = StopID;
         this.stopNum = stopNum;
         this.nickname = nickname;
         this.properName = properName;
@@ -21,11 +25,11 @@ public class Locations {
 
     // Getters
 
-    public int getID(){
-        return ID;
+    public Integer getID(){
+        return StopID;
     }
 
-    public int getStopNum(){
+    public Integer getStopNum(){
         return stopNum;
     }
 
@@ -33,22 +37,27 @@ public class Locations {
         return nickname;
     }
 
-    public String getProperName(){
-        return properName;
-    }
+//    public String getProperName(){
+//        return properName;
+//    }
 
-    public double getLatitude(){
+
+    public Double getLatitude(){
         return latitude;
     }
 
-    public double getLongitude(){
+    public Double getLongitude(){
         return longitude;
     }
 
 
     // Setters
 
-    public void setStopNum(byte stopNum){
+    public void setID(Integer StopID){
+        this.StopID = StopID;
+    }
+
+    public void setStopNum(Integer stopNum){
         this.stopNum = stopNum;
     }
 
@@ -56,15 +65,15 @@ public class Locations {
         this.nickname = nickname;
     }
 
-    public void setProperName(String properName){
-        this.properName = properName;
-    }
+//    public void setProperName(String properName){
+//        this.properName = properName;
+//    }
 
-    public void setLatitude(double latitude){
+    public void setLatitude(Double latitude){
         this.latitude = latitude;
     }
 
-    public void setLongitude(double longitude){
+    public void setLongitude(Double longitude){
         this.longitude = longitude;
     }
 

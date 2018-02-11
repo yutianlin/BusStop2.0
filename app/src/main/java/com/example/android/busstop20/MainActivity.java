@@ -8,8 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
+
+    ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +20,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        listview = (ListView) findViewById(R.id.lvRoutes);
+
+        String[][] test = new String[2][5];
+        test[0][0] = "1";
+        test[0][1] = "a";
+        test[0][2] = "b";
+        test[0][3] = "c";
+        test[0][4] = "d";
+        test[1][0] = "2";
+        test[1][1] = "a";
+        test[1][2] = "b";
+        test[1][3] = "c";
+        test[1][4] = "d";
+
+        listview.setAdapter(new MainAdapter(this, test));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

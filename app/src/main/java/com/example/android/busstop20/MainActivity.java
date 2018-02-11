@@ -24,17 +24,15 @@ public class MainActivity extends AppCompatActivity {
 
         listview = (ListView) findViewById(R.id.lvRoutes);
 
-        String[][] test = new String[2][5];
+        String[][] test = new String[2][4];
         test[0][0] = "1";
         test[0][1] = "a";
         test[0][2] = "b";
         test[0][3] = "c";
-        test[0][4] = "d";
         test[1][0] = "2";
         test[1][1] = "a";
         test[1][2] = "b";
         test[1][3] = "c";
-        test[1][4] = "d";
 
         listview.setAdapter(new MainAdapter(this, test));
 

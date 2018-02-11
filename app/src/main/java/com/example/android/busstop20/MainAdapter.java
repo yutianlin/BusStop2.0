@@ -52,12 +52,10 @@ public class MainAdapter extends BaseAdapter {
         text.setText(data[position][0]);
         text = (TextView) vi.findViewById(R.id.txtvNicknameFrom);
         text.setText(data[position][1]);
-        text = (TextView) vi.findViewById(R.id.txtvNicknameTo);
-        text.setText(data[position][2]);
         text = (TextView) vi.findViewById(R.id.txtvFormalFrom);
-        text.setText(data[position][3]);
+        text.setText(data[position][2]);
         text = (TextView) vi.findViewById(R.id.txtvFormalTo);
-        text.setText(data[position][4]);
+        text.setText(data[position][3]);
         return vi;
     }
 }

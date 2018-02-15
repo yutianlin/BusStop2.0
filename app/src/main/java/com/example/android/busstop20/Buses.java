@@ -5,6 +5,10 @@ public class Buses{
     private Integer busID;
     private Integer busNum;
 
+    public Buses(){
+
+    }
+
     public Buses(Integer busID, Integer busNum){
         this.busID = busID;
         this.busNum = busNum;
@@ -21,6 +25,10 @@ public class Buses{
     }
 
     // Setters
+
+    public void setBusID(Integer busID){
+        this.busID = busID;
+    }
 
     public void setBusNum(Integer busNum){
         this.busNum = busNum;

@@ -4,7 +4,7 @@ import static android.R.attr.direction;
 
 public class Locations extends Direction{
 
-    private Integer StopID;
+
     private Integer stopNum;
     private String nickname;
     private Double latitude;
@@ -24,10 +24,6 @@ public class Locations extends Direction{
     }
 
     // Getters
-
-    public Integer getID(){
-        return StopID;
-    }
 
     public Integer getStopNum(){
         return stopNum;
@@ -52,10 +48,6 @@ public class Locations extends Direction{
 
 
     // Setters
-
-    public void setID(Integer StopID){
-        this.StopID = StopID;
-    }
 
     public void setStopNum(Integer stopNum){
         this.stopNum = stopNum;

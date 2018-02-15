@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.location.Location;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -100,6 +99,46 @@ public class BusData extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    // EFFECTS: Creates new destination in Direction table
+    public long newDestination(Direction direction){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(PROP, direction.getProperName());
+        return db.insert(TABLE_DIRECTION, null, values);
+    }
+
+    // EFFECTS: Updates selected destination in Direction table
+    public int updateDestination(Direction direction){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(PROP, direction.getProperName());
+        return db.update(TABLE_DIRECTION, values, ID + " = ?",
+                new String[] {String.valueOf(direction.getDestinationID())});
+    }
+
+    // EFFECTS: Deletes selected destination in Direction table
+    public int deleteDestination(Direction direction){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_DIRECTION, ID + " = ?",
+                new String[] {String.valueOf(direction.getDestinationID())});
+    }
+
+    // EFFECTS: Returns list of all destinations in Direction table
+    public ArrayList<Direction> selectAllDirection(){
+        ArrayList<Direction> directions = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_DIRECTION;
+        Log.e(LOG, query);
+        Cursor cursor = db.rawQuery(query, null);
+        for (cursor.moveToFirst(); cursor.isAfterLast(); cursor.moveToNext()){
+            Direction direction = new Direction();
+            direction.setID(cursor.getInt(cursor.getColumnIndex(ID)));
+            direction.setProperName(cursor.getString(cursor.getColumnIndex(PROP)));
+            directions.add(direction);
+        }
+        return directions;
+    }
+
     // EFFECTS: Creates new bus in Buses Table
     public long newBus(Buses bus){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -107,7 +146,39 @@ public class BusData extends SQLiteOpenHelper{
         values.put(BUS_NUM, bus.getBusNum());
         return db.insert(TABLE_BUSES, null, values);
     }
-    
+
+    // EFFECTS: Updates selected bus in Buses Table
+    public int updateBus(Buses bus){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(BUS_NUM, bus.getBusNum());
+        return db.update(TABLE_BUSES, values, ID + " = ?",
+                new String[] {String.valueOf(bus.getbusID())});
+    }
+
+    // EFFECTS: Deletes selected bus from Buses Table
+    public int deleteBus(Buses bus){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_BUSES, ID + " = ?",
+                new String[] {String.valueOf(bus.getbusID())});
+    }
+
+    // EFFECTS: returns a list of all buses from Buses Table
+    public ArrayList<Buses> selectAllBuses(){
+        ArrayList<Buses> buses = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_BUSES;
+        Log.e(LOG, query);
+        Cursor cursor = db.rawQuery(query, null);
+        for (cursor.moveToFirst(); cursor.isAfterLast(); cursor.moveToNext()){
+            Buses bus = new Buses();
+            bus.setBusID(cursor.getInt(cursor.getColumnIndex(ID)));
+            bus.setBusNum(cursor.getInt(cursor.getColumnIndex(BUS_NUM)));
+            buses.add(bus);
+        }
+        return buses;
+    }
+
     // EFFECTS: Creates new location in Location Table
     public long newLocation(Locations location){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -133,14 +204,14 @@ public class BusData extends SQLiteOpenHelper{
         values.put(LONG, location.getLongitude());
 
         return db.update(TABLE_LOCATION, values, ID + "= ?",
-                new String[] {String.valueOf(location.getID())});
+                new String[] {String.valueOf(location.getDestinationID())});
     }
 
     //EFFECTS: Deletes selected location from Location Table
     public int deleteLocation(Locations location){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_LOCATION, ID + " = ?",
-                new String[] {String.valueOf(location.getID())});
+                new String[] {String.valueOf(location.getDestinationID())});
     }
 
     //EFFECTS: returns a list of all Locations from Locations Table
